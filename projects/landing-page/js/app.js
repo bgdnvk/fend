@@ -17,6 +17,9 @@
  * Define Global Variables
  * 
 */
+//start time for performance
+const startTime = performance.now();
+
 //get header and navbar
 const pageHeader = document.querySelector(".page__header");
 const navBarMenu = document.querySelector(".navbar__menu");
@@ -46,6 +49,7 @@ function buildNav(){
 
     for(let i = 0; i < sections.length; i++){
         const newLi = document.createElement("li");
+        //TODO: maybe change text for a button
         newLi.innerHTML =`<a href="#${sections[i].id}">${
             //selecting the inner text (inner html) of the header
             sections[i].querySelector("h2").innerText}
@@ -70,8 +74,6 @@ function buildNav(){
     //adding some style to the navbar itself
     navBarList.style.display = "flex";
 }
-//executing the function
-buildNav();
 
 // Add class 'active' to section when near top of viewport
 
@@ -86,7 +88,14 @@ buildNav();
 */
 
 // Build menu 
-
+function menu(){
+    //build nav bar
+    buildNav();
+}
+menu();
 // Scroll to section on link click
 
 // Set sections as active
+
+const endTime = performance.now();
+console.log(`JS loaded in ${endTime-startTime} ms`)
