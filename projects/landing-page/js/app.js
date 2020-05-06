@@ -78,15 +78,17 @@ function buildNav(){
     navBarList.appendChild(fragment);
     //adding some style to the navbar itself
     navBarList.style.display = "flex";
-
-    
 }
-// Add class 'active' to section when near top of viewport
-//function for when you click
+
+
+
+// Scroll to section on link click
 function clicked(e, section){
      e.addEventListener("click",
     function(){
+        //removing all background before clicking on the new section
         removeBackground();
+        // Set sections as active
         section.classList.add("your-active-class")
     }
     );    
@@ -97,8 +99,31 @@ function removeBackground(){
         sections[i].classList.remove("your-active-class");
     }
 }
-// Scroll to anchor ID using scrollTO event
 
+//original function from: https://vanillajstoolkit.com/helpers/isinviewport/
+// Add class 'active' to section when near top of viewport
+function isInViewport(e){
+    let rect = e.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Scroll to anchor ID using scrollTO event
+function scrolling(){
+    window.addEventListener("scroll", function(){
+        for (let section of sections){
+            if(isInViewport(section)){
+                section.classList.add("your-active-class");
+            } else {
+                section.classList.remove("your-active-class");
+            }
+        }
+    })
+}
 
 /**
  * End Main Functions
@@ -107,15 +132,14 @@ function removeBackground(){
 */
 
 // Build menu 
-function menu(){
+function page(){
     //build nav bar
     buildNav();
-
+    //run scroll func
+    scrolling();
 }
-menu();
-// Scroll to section on link click
+page();
 
-// Set sections as active
 
 const endTime = performance.now();
 console.log(`JS loaded in ${endTime-startTime} ms`)
