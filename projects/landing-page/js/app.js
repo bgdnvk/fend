@@ -28,6 +28,8 @@ const navBarList = document.getElementById("navbar__list");
 //get sections of the page
 const sections = document.querySelectorAll("section");
 
+const pageFooter = document.querySelector(".page__footer");
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -67,17 +69,34 @@ function buildNav(){
         
         //adding the new element to the fragment
         fragment.appendChild(newLi);
+
+        //adding a click listener
+        clicked(newLi, sections[i]);
     }
     //checking if it works properly
     //document.body.appendChild(fragment);
     navBarList.appendChild(fragment);
     //adding some style to the navbar itself
     navBarList.style.display = "flex";
+
+    
 }
-
 // Add class 'active' to section when near top of viewport
-
-
+//function for when you click
+function clicked(e, section){
+     e.addEventListener("click",
+    function(){
+        removeBackground();
+        section.classList.add("your-active-class")
+    }
+    );    
+}
+//remove your-active-class css background
+function removeBackground(){
+    for(let i = 0; i < sections.length; i++){
+        sections[i].classList.remove("your-active-class");
+    }
+}
 // Scroll to anchor ID using scrollTO event
 
 
@@ -91,6 +110,7 @@ function buildNav(){
 function menu(){
     //build nav bar
     buildNav();
+
 }
 menu();
 // Scroll to section on link click
