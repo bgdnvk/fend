@@ -24,8 +24,7 @@ const navBarMenu = document.querySelector(".navbar__menu");
 const navBarList = document.getElementById("navbar__list");
 //get sections of the page
 const sections = document.querySelectorAll("section");
-//get the h2 of the section
-const header2 = document.querySelector("h2.landing__container");
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -54,14 +53,22 @@ function buildNav(){
         //adding some style
         newLi.style.margin = "1%";
         newLi.style.padding = "1%";
-        newLi.style.border = "1px solid purple";
+        newLi.style.border = "1px solid AntiqueWhite";
+        newLi.style.background = "LightGray";
+        //making it flex so it displays properly
+        newLi.style.display = "flex";
+        newLi.style.justifyContent = "center";
+        //making the Li extend
+        newLi.style.flexGrow = "1";
         
-
+        //adding the new element to the fragment
         fragment.appendChild(newLi);
     }
     //checking if it works properly
     //document.body.appendChild(fragment);
     navBarList.appendChild(fragment);
+    //adding some style to the navbar itself
+    navBarList.style.display = "flex";
 }
 //executing the function
 buildNav();
