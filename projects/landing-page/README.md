@@ -5,6 +5,5 @@ The project works as per rubric: whenever you click on a button it takes you to 
 Everything works through app.js. 
 
 ## optional TODOs
-Add timeout for scrolling
 Hide bar while scrolling
 Add "back to top button"
